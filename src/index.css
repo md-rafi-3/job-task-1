@@ -1,2 +1,14 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+body {
+  @apply relative min-h-screen bg-black text-white overflow-x-hidden;
+  background: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      rgba(139, 92, 246, 0.25),
+      transparent 70%
+    ),
+    #000000;
+  background-attachment: fixed; /* Keeps the glow steady when scrolling */
+}
