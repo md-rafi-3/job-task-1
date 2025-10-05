@@ -9,7 +9,7 @@ export default function FooterMapSection() {
         className="absolute inset-0 bg-center bg-cover opacity-30"
         style={{
           backgroundImage:
-            "url('https://upload.wikimedia.org/wikipedia/commons/e/ef/BlankMap-World-Microstates.svg')",
+            "url('https://i.ibb.co.com/C3RGd8Sw/61759.jpg')",
         }}
       ></div>
 
