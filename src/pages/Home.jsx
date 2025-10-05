@@ -9,6 +9,10 @@ import ReviewsSection from '../components/Review';
 import VideoSection from '../components/VideoSection';
 import HowItWorks from '../components/HowItWorks';
 import PodcastSection from '../components/PodcastSection';
+import ContactSection from '../components/ContactSection';
+import FAQSection from '../components/FAQSection';
+import FooterMapSection from '../components/FooterMapSection';
+import NewsletterSection from '../components/NewsletterSection';
 
 const Home = () => {
     return (
@@ -23,6 +27,10 @@ const Home = () => {
             <ReviewsSection></ReviewsSection>
             <BlogSection></BlogSection>
             <PodcastSection></PodcastSection>
+            <ContactSection></ContactSection>
+            <FAQSection></FAQSection>
+            <FooterMapSection></FooterMapSection>
+            <NewsletterSection></NewsletterSection>
 
         </div>
     );

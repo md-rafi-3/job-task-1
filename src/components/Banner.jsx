@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
-import bgGif from "../assets/comp1_4.gif"; // ✅ তোমার GIF file path অনুযায়ী ঠিক রাখো
+import bgGif from "../assets/comp1_4.gif"; 
 
 export default function AirokomBanner() {
   return (

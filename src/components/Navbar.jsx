@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FaHome, FaList, FaUserAlt, FaShoppingCart } from "react-icons/fa";
 import { MdLabelImportant } from "react-icons/md";
 import { HiMenuAlt3 } from "react-icons/hi";
+import Logo from "../assets/Frame.gif";
 
 const Navbar = () => {
   const [active, setActive] = useState("home");
@@ -46,7 +47,7 @@ const Navbar = () => {
       <div className="hidden md:flex items-center justify-between px-10 py-4">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <img src="/logo.svg" alt="logo" className="h-8 w-8" />
+          <img src={Logo} alt="logo" className="h-8 w-8" />
         </div>
 
         {/* Nav Links */}
