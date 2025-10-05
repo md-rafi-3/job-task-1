@@ -1,19 +1,15 @@
-"use client";
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router";
 import { FaHome, FaList, FaUserAlt, FaShoppingCart } from "react-icons/fa";
 import { MdLabelImportant } from "react-icons/md";
 import { HiMenuAlt3 } from "react-icons/hi";
 import Logo from "../assets/Frame.gif";
 
 const Navbar = () => {
-  const [active, setActive] = useState("home");
   const [scrolled, setScrolled] = useState(false);
 
-  // Optional scroll effect (adds subtle background when scrolling)
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -27,117 +23,97 @@ const Navbar = () => {
       }`}
     >
       {/* ===== Top Info Bar ===== */}
-      <div className="hidden md:flex justify-between items-center text-xs px-6 py-2 bg-transparent backdrop-blur-md">
-        <div className="flex gap-4 text-gray-200">
-          <span>Budget friendly</span>
-          <span>No. 1 in Europe</span>
+      <div className="hidden md:flex justify-between items-center text-xs px-10 py-2 text-gray-300">
+        <div className="flex gap-5">
+          <span>💰 Budget Friendly</span>
+          <span>🏆 No. 1 in Europe</span>
           <span>
-            On your first order{" "}
+            🎉 First Order{" "}
             <span className="text-red-400 font-semibold">30% OFF</span>
           </span>
         </div>
-        <div className="flex gap-4 text-gray-300">
-          <span>All products buy now get the offer</span>
-          <span>User Friendly</span>
-          <span>24/7 Service</span>
+        <div className="flex gap-5">
+          <span>🔥 Buy Now & Get Offers</span>
+          <span>⚡ User Friendly</span>
+          <span>📞 24/7 Support</span>
         </div>
       </div>
 
       {/* ===== Desktop Navbar ===== */}
-      <div className="hidden md:flex items-center justify-between px-10 py-4">
+      <div className="hidden md:flex items-center justify-between px-16 py-4">
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <img src={Logo} alt="logo" className="h-8 w-8" />
-        </div>
+        <NavLink to="/" className="flex items-center gap-2">
+          <img src={Logo} alt="logo" className="h-10 w-10 rounded-full" />
+        </NavLink>
 
         {/* Nav Links */}
-        <nav className="flex items-center gap-6 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full shadow-inner border border-white/10">
-          <button className="px-4 py-1 rounded-full bg-gradient-to-r from-[#6b4eff] to-[#874bff] text-sm font-medium">
-            Home
-          </button>
-          <button className="text-gray-200 hover:text-white text-sm">
-            About Us
-          </button>
-          <div className="relative group">
-            <button className="text-gray-200 hover:text-white text-sm flex items-center gap-1">
-              Services
-            </button>
-            <div className="absolute hidden group-hover:block bg-[#151a2c] rounded-lg p-3 mt-2 shadow-lg w-40">
-              <p className="hover:text-[#874bff] text-sm cursor-pointer">
-                Web Design
-              </p>
-              <p className="hover:text-[#874bff] text-sm cursor-pointer">
-                White Labelling
-              </p>
-            </div>
-          </div>
-          <button className="text-gray-200 hover:text-white text-sm">
-            White Label
-          </button>
-          <button className="text-gray-200 hover:text-white text-sm">
-            Contact Us
-          </button>
+        <nav className="flex items-center gap-8 bg-white/10 backdrop-blur-md px-8 py-2 rounded-full shadow-inner border border-white/10">
+          {[
+            { path: "/", label: "Home" },
+            { path: "/about", label: "About Us" },
+            { path: "/services", label: "Services" },
+            { path: "/white-label", label: "White Label" },
+            { path: "/contact", label: "Contact Us" },
+          ].map(({ path, label }) => (
+            <NavLink
+              key={path}
+              to={path}
+              className={({ isActive }) =>
+                `text-sm font-medium px-5 py-1.5 rounded-full transition ${
+                  isActive
+                    ? "bg-gradient-to-r from-[#6b4eff] to-[#874bff] text-white shadow-[0_0_15px_rgba(139,92,246,0.4)] scale-105"
+                    : "text-gray-200 hover:text-white"
+                }`
+              }
+            >
+              {label}
+            </NavLink>
+          ))}
         </nav>
 
         {/* Right Buttons */}
-        <div className="flex items-center gap-3">
-          <FaShoppingCart className="text-xl cursor-pointer hover:text-[#874bff]" />
-          <button className="bg-gradient-to-r from-[#6b4eff] to-[#874bff] px-5 py-2 rounded-full text-sm font-medium">
+        <div className="flex items-center gap-4">
+          <FaShoppingCart className="text-xl cursor-pointer hover:text-[#874bff] transition" />
+          <button className="bg-gradient-to-r from-[#6b4eff] to-[#874bff] px-6 py-2 rounded-full text-sm font-medium text-white hover:opacity-90 transition shadow-[0_0_15px_rgba(139,92,246,0.4)]">
             Sign In
           </button>
         </div>
       </div>
 
-      {/* ===== Topbar (Mobile) ===== */}
-      <div className="md:hidden fixed top-0 left-0 right-0 bg-transparent backdrop-blur-md flex items-center justify-between px-5 py-3 border-b border-white/10">
-        <img src="/logo.svg" alt="logo" className="h-7 w-7" />
+      {/* ===== Mobile Navbar Top ===== */}
+      <div className="md:hidden fixed top-0 left-0 right-0 bg-[#0e0122]/80 backdrop-blur-md flex items-center justify-between px-5 py-3 border-b border-white/10 z-[60]">
+        <NavLink to="/">
+          <img src={Logo} alt="logo" className="h-8 w-8 rounded-full" />
+        </NavLink>
         <div className="flex items-center gap-3">
-          <FaShoppingCart className="text-lg" />
-          <HiMenuAlt3 className="text-2xl" />
+          <FaShoppingCart className="text-lg text-white" />
+          <HiMenuAlt3 className="text-2xl text-white" />
         </div>
       </div>
 
-      {/* ===== Bottom Navbar (Mobile) ===== */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[#0a0d1a]/90 backdrop-blur-md flex justify-around py-2 border-t border-[#1e2336] z-50">
-        <button
-          onClick={() => setActive("home")}
-          className={`flex flex-col items-center text-xs ${
-            active === "home" ? "text-[#874bff]" : "text-gray-400"
-          }`}
-        >
-          <FaHome className="text-lg mb-1" />
-          Home
-        </button>
-
-        <button
-          onClick={() => setActive("services")}
-          className={`flex flex-col items-center text-xs ${
-            active === "services" ? "text-[#874bff]" : "text-gray-400"
-          }`}
-        >
-          <FaList className="text-lg mb-1" />
-          Services
-        </button>
-
-        <button
-          onClick={() => setActive("white")}
-          className={`flex flex-col items-center text-xs ${
-            active === "white" ? "text-[#874bff]" : "text-gray-400"
-          }`}
-        >
-          <MdLabelImportant className="text-lg mb-1" />
-          White Label
-        </button>
-
-        <button
-          onClick={() => setActive("about")}
-          className={`flex flex-col items-center text-xs ${
-            active === "about" ? "text-[#874bff]" : "text-gray-400"
-          }`}
-        >
-          <FaUserAlt className="text-lg mb-1" />
-          About
-        </button>
+      {/* ===== Mobile Bottom Navbar ===== */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[#0a0d1a]/95 backdrop-blur-xl flex justify-around py-2.5 border-t border-[#1e2336] z-[60]">
+        {[
+          { path: "/", icon: <FaHome />, label: "Home" },
+          { path: "/services", icon: <FaList />, label: "Services" },
+          { path: "/white-label", icon: <MdLabelImportant />, label: "White" },
+          { path: "/about", icon: <FaUserAlt />, label: "About" },
+        ].map(({ path, icon, label }) => (
+          <NavLink
+            key={path}
+            to={path}
+            className={({ isActive }) =>
+              `flex flex-col items-center text-xs transition ${
+                isActive
+                  ? "text-[#874bff] scale-110"
+                  : "text-gray-400 hover:text-white"
+              }`
+            }
+          >
+            <span className="text-lg mb-1">{icon}</span>
+            {label}
+          </NavLink>
+        ))}
       </div>
     </header>
   );
