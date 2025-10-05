@@ -7,7 +7,7 @@ export default function AboutHero() {
 
   return (
     <section
-      className="min-h-[80vh] bg-[#0e0122] text-white py-28 md:py-32 px-8 md:px-20 overflow-hidden mt-[80px]"
+      className="min-h-[80vh] bg-[#0e0122] text-white py-28 md:py-32 px-8 md:px-20 overflow-hidden mt-[70px]"
     >
       {/* ↑ added mt-[80px] to push down below fixed navbar */}
 
